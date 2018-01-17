@@ -6,7 +6,7 @@
 
 #define __KDQ_TYPE(type) \
 	typedef struct { \
-		size_t front:58, bits:6, count, mask; \
+		uint64_t front:58, bits:6, count, mask; \
 		type *a; \
 	} kdq_##type##_t;
 
@@ -32,7 +32,7 @@
 	} \
 	SCOPE int kdq_resize_##type(kdq_##type##_t *q, int new_bits) \
 	{ \
-		size_t new_size = 1ULL<<new_bits, old_size = 1ULL<<q->bits; \
+		uint64_t new_size = 1ULL<<new_bits, old_size = 1ULL<<q->bits; \
 		if (new_size < q->count) { /* not big enough */ \
 			int i; \
 			for (i = 0; i < 64; ++i) \
