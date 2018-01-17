@@ -99,7 +99,7 @@ void ht_khash_unpack()
 		k = kh_put(iun, h, x, &ret);
 		if (!ret) kh_del(iun, h, k);
 	}
-	printf("[ht_khash_unpack] size: %u (sizeof=%ld)\n", kh_size(h), sizeof(int_unpack_t));
+	printf("[ht_khash_unpack] size: %u (sizeof=%lu)\n", kh_size(h), (unsigned long)sizeof(int_unpack_t));
 	kh_destroy(iun, h);
 }
 
@@ -117,7 +117,7 @@ void ht_khash_packed()
 		k = kh_put(ipk, h, x, &ret);
 		if (!ret) kh_del(ipk, h, k);
 	}
-	printf("[ht_khash_packed] size: %u (sizeof=%ld)\n", kh_size(h), sizeof(int_packed_t));
+	printf("[ht_khash_packed] size: %u (sizeof=%lu)\n", kh_size(h), (unsigned long)sizeof(int_packed_t));
 	kh_destroy(ipk, h);
 }
 
