@@ -118,6 +118,8 @@ static inline int kputc(int c, kstring_t *s)
 	return c;
 }
 
+#define NUMBUF_SIZE 128
+
 static void format_node_recur(const knhx1_t *node, const knhx1_t *p, kstring_t *s, char *numbuf)
 {
 	if (p->n) {
@@ -130,13 +132,13 @@ static void format_node_recur(const knhx1_t *node, const knhx1_t *p, kstring_t *
 		kputc(')', s);
 		if (p->name) kputsn(p->name, strlen(p->name), s);
 		if (p->d >= 0) {
-			sprintf(numbuf, ":%g", p->d);
+			snprintf(numbuf, NUMBUF_SIZE, ":%g", p->d);
 			kputsn(numbuf, strlen(numbuf), s);
 		}
 	} else {
 	  kputsn(p->name, strlen(p->name), s);
 	  if (p->d >= 0) {
-	    sprintf(numbuf, ":%g", p->d);
+	    snprintf(numbuf, NUMBUF_SIZE, ":%g", p->d);
 	    kputsn(numbuf, strlen(numbuf), s);
 	  }
 	}
@@ -144,7 +146,7 @@ static void format_node_recur(const knhx1_t *node, const knhx1_t *p, kstring_t *
 
 void kn_format(const knhx1_t *node, int root, kstring_t *s) // TODO: get rid of recursion
 {
-	char numbuf[128];
+	char numbuf[NUMBUF_SIZE];
 	format_node_recur(node, &node[root], s, numbuf);
 }
 

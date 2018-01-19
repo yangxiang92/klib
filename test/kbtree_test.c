@@ -25,7 +25,7 @@ void ht_init_data()
 	str_data = (char**)calloc(data_size, sizeof(char*));
 	for (i = 0; i < data_size; ++i) {
 		int_data[i] = (unsigned)(data_size * drand48() / 4) * 271828183u;
-		sprintf(buf, "%x", int_data[i]);
+		snprintf(buf, 256, "%x", int_data[i]);
 		str_data[i] = strdup(buf);
 	}
 	printf("done!\n");
